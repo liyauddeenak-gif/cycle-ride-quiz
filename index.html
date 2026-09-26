@@ -4,569 +4,1029 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>🚲 Cycle Ride Quiz</title>
 
 <style>
-    * {
-        box-sizing: border-box;
-        font-family: Arial, sans-serif;
-    }
 
-    body {
-        margin: 0;
-        min-height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background: linear-gradient(135deg, #00b4db, #0083b0);
-        color: white;
-        overflow-x: hidden;
-    }
+* {
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
 
-    .container {
-        width: 92%;
-        max-width: 650px;
-        background: rgba(255,255,255,0.15);
-        backdrop-filter: blur(12px);
-        padding: 30px;
-        border-radius: 25px;
-        text-align: center;
-        box-shadow: 0 10px 35px rgba(0,0,0,0.25);
-    }
+body {
+    margin: 0;
+    min-height: 100vh;
 
-    h1 {
-        font-size: 32px;
-        margin-bottom: 10px;
-    }
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-    h2 {
-        font-size: 25px;
-        margin-bottom: 25px;
-    }
+    background: linear-gradient(135deg, #00b4db, #0083b0);
 
-    p {
-        font-size: 18px;
-    }
+    color: white;
+    overflow-x: hidden;
+}
 
-    button {
-        border: none;
-        padding: 14px 22px;
-        margin: 8px;
-        border-radius: 15px;
-        font-size: 17px;
-        cursor: pointer;
-        transition: 0.2s;
-    }
+.container {
+    width: 92%;
+    max-width: 650px;
 
-    button:hover {
-        transform: scale(1.05);
-    }
+    background: rgba(255,255,255,0.15);
 
-    .yes {
-        background: #25d366;
-        color: white;
-    }
+    backdrop-filter: blur(12px);
 
-    .no {
-        background: #ff4d4d;
-        color: white;
-        position: absolute;
-    }
+    padding: 30px;
 
-    .answer {
-        display: block;
-        width: 90%;
-        margin: 12px auto;
-        background: rgba(255,255,255,0.9);
-        color: #222;
-    }
+    border-radius: 25px;
 
-    .answer.selected {
-        background: #25d366;
-        color: white;
-        transform: scale(1.04);
-    }
+    text-align: center;
 
-    .next {
-        background: #ffcc00;
-        color: #222;
-        font-weight: bold;
-        margin-top: 20px;
-    }
+    box-shadow: 0 10px 35px rgba(0,0,0,0.25);
+}
 
-    .whatsapp {
-        background: #25d366;
-        color: white;
-        font-weight: bold;
-    }
+h1 {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
 
-    .restart {
-        background: white;
-        color: #0083b0;
-        font-weight: bold;
-    }
+h2 {
+    font-size: 25px;
+    margin-bottom: 25px;
+}
 
-    .stats {
-        text-align: left;
-        margin-top: 25px;
-    }
+p {
+    font-size: 18px;
+}
 
-    .stat {
-        margin: 15px 0;
-    }
+button {
+    border: none;
 
-    .bar {
-        width: 100%;
-        height: 15px;
-        background: rgba(255,255,255,0.3);
-        border-radius: 20px;
-        overflow: hidden;
-        margin-top: 5px;
-    }
+    padding: 14px 22px;
 
-    .fill {
-        height: 100%;
-        background: #fff;
-        border-radius: 20px;
-    }
+    margin: 8px;
 
-    .certificate {
-        border: 3px solid white;
-        padding: 25px;
-        border-radius: 20px;
-        margin-top: 20px;
-    }
+    border-radius: 15px;
 
-    .hidden {
-        display: none;
-    }
+    font-size: 17px;
 
-    #noButton {
-        position: relative;
-    }
+    cursor: pointer;
 
-    .small {
-        font-size: 14px;
-        opacity: 0.8;
-        margin-top: 20px;
-    }
+    transition: 0.2s;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+.yes {
+    background: #25d366;
+    color: white;
+}
+
+.no {
+    background: #ff4d4d;
+    color: white;
+
+    position: relative;
+}
+
+.answer {
+    display: block;
+
+    width: 90%;
+
+    margin: 12px auto;
+
+    background: rgba(255,255,255,0.95);
+
+    color: #222;
+}
+
+.answer.selected {
+    background: #25d366;
+
+    color: white;
+
+    transform: scale(1.04);
+}
+
+.next {
+    background: #ffcc00;
+
+    color: #222;
+
+    font-weight: bold;
+
+    margin-top: 20px;
+}
+
+.whatsapp {
+    background: #25d366;
+
+    color: white;
+
+    font-weight: bold;
+}
+
+.restart {
+    background: white;
+
+    color: #0083b0;
+
+    font-weight: bold;
+}
+
+.stats {
+    text-align: left;
+
+    margin-top: 25px;
+}
+
+.stat {
+    margin: 15px 0;
+}
+
+.bar {
+    width: 100%;
+
+    height: 15px;
+
+    background: rgba(255,255,255,0.3);
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    margin-top: 5px;
+}
+
+.fill {
+    height: 100%;
+
+    background: white;
+
+    border-radius: 20px;
+}
+
+.certificate {
+    border: 3px solid white;
+
+    padding: 25px;
+
+    border-radius: 20px;
+
+    margin-top: 20px;
+}
+
+.hidden {
+    display: none;
+}
+
+.small {
+    font-size: 14px;
+
+    opacity: 0.8;
+
+    margin-top: 20px;
+}
+
 </style>
+
 </head>
 
 <body>
 
 <div class="container">
 
-    <!-- PAGE 1 -->
-    <div id="page1">
-        <h1>🚲 Cycle Ride Quiz 🚲</h1>
-        <p>Before we start another legendary ride...</p>
+<!-- ========================= -->
+<!-- START PAGE -->
+<!-- ========================= -->
 
-        <h2>Ready for another legendary cycle ride?</h2>
+<div id="page1">
 
-        <button class="yes" onclick="answerQ1('YES 🚲🔥')">
-            YES 🚲🔥
-        </button>
+    <h1>🚲 Cycle Ride Quiz 🚲</h1>
 
-        <button class="no" id="noButton" onmouseover="moveNoButton()">
-            NO 😏
-        </button>
-    </div>
+    <p>
+        Before we start another legendary ride...
+    </p>
 
+    <h2>
+        Ready for another legendary cycle ride?
+    </h2>
 
-    <!-- PAGE 2 -->
-    <div id="page2" class="hidden">
-        <h1>Question 1 😂</h1>
+    <button
+        class="yes"
+        onclick="answerQ1('YES 🚲🔥')">
 
-        <h2>What is our topic for today?</h2>
+        YES 🚲🔥
 
-        <button class="answer" onclick="selectAnswer(1, '😂 Random Discussions', this)">
-            😂 Random Discussions
-        </button>
+    </button>
 
-        <button class="answer" onclick="selectAnswer(1, '👨‍🏫 About Teachers', this)">
-            👨‍🏫 About Teachers
-        </button>
+    <button
+        class="no"
+        id="noButton"
+        onmouseover="moveNoButton()">
 
-        <button class="answer" onclick="selectAnswer(1, '💅 Lady Beauty', this)">
-            💅 Lady Beauty
-        </button>
+        NO 😏
 
-        <button class="answer" onclick="selectAnswer(1, '❄️ AC Problems', this)">
-            ❄️ AC Problems
-        </button>
+    </button>
 
-        <button class="answer" onclick="selectAnswer(1, '🧑‍💼 About the VP', this)">
-            🧑‍💼 About the VP
-        </button>
-
-        <button class="answer" onclick="selectAnswer(1, '🎓 About the Principal', this)">
-            🎓 About the Principal
-        </button>
-
-        <button class="answer" onclick="selectAnswer(1, '🤫 Something We Shouldn’t Discuss! 😂', this)">
-            🤫 Something We Shouldn’t Discuss! 😂
-        </button>
-
-        <button class="next" onclick="nextPage(2)">
-            Next ➡️
-        </button>
-    </div>
+</div>
 
 
-    <!-- PAGE 3 -->
-    <div id="page3" class="hidden">
-        <h1>Question 2 🍛</h1>
+<!-- ========================= -->
+<!-- QUESTION 1 -->
+<!-- ========================= -->
 
-        <h2>After today's ride, who will share the curry?</h2>
+<div id="page2" class="hidden">
 
-        <button class="answer" onclick="selectAnswer(2, 'You 😎', this)">
-            You 😎
-        </button>
+    <h1>Question 1 😂</h1>
 
-        <button class="answer" onclick="selectAnswer(2, 'Me 😇', this)">
-            Me 😇
-        </button>
+    <h2>
+        What is our topic for today?
+    </h2>
 
-        <button class="answer" onclick="selectAnswer(2, 'No sharing! 😂', this)">
-            No sharing! 😂
-        </button>
+    <button
+        class="answer"
+        onclick="selectAnswer(1, '😂 Random Discussions', this)">
 
-        <button class="next" onclick="nextPage(3)">
-            Next ➡️
-        </button>
-    </div>
+        😂 Random Discussions
 
+    </button>
 
-    <!-- PAGE 4 -->
-    <div id="page4" class="hidden">
-        <h1>Question 3 ☕</h1>
+    <button
+        class="answer"
+        onclick="selectAnswer(1, '👨‍🏫 About Teachers', this)">
 
-        <h2>Who will suggest tea first?</h2>
+        👨‍🏫 About Teachers
 
-        <button class="answer" onclick="selectAnswer(3, 'You ☕', this)">
-            You ☕
-        </button>
+    </button>
 
-        <button class="answer" onclick="selectAnswer(3, 'Me ☕', this)">
-            Me ☕
-        </button>
+    <button
+        class="answer"
+        onclick="selectAnswer(1, '💅 Lady Beauty', this)">
 
-        <button class="answer" onclick="selectAnswer(3, 'Both at the same time 😂', this)">
-            Both at the same time 😂
-        </button>
+        💅 Lady Beauty
 
-        <button class="next" onclick="nextPage(4)">
-            Next ➡️
-        </button>
-    </div>
+    </button>
 
+    <button
+        class="answer"
+        onclick="selectAnswer(1, '❄️ AC Problems', this)">
 
-    <!-- PAGE 5 -->
-    <div id="page5" class="hidden">
-        <h1>Question 4 😂</h1>
+        ❄️ AC Problems
 
-        <h2>Who will complain about being tired first?</h2>
+    </button>
 
-        <button class="answer" onclick="selectAnswer(4, 'You 😂', this)">
-            You 😂
-        </button>
+    <button
+        class="answer"
+        onclick="selectAnswer(1, '🧑‍💼 About the VP', this)">
 
-        <button class="answer" onclick="selectAnswer(4, 'Me 😭', this)">
-            Me 😭
-        </button>
+        🧑‍💼 About the VP
 
-        <button class="answer" onclick="selectAnswer(4, 'Neither 😎', this)">
-            Neither 😎
-        </button>
+    </button>
 
-        <button class="next" onclick="nextPage(5)">
-            Next ➡️
-        </button>
-    </div>
+    <button
+        class="answer"
+        onclick="selectAnswer(1, '🎓 About the Principal', this)">
 
+        🎓 About the Principal
 
-    <!-- PAGE 6 -->
-    <div id="page6" class="hidden">
-        <h1>Question 5 🍟</h1>
+    </button>
 
-        <h2>Who gets the bigger share of the snacks?</h2>
+    <button
+        class="answer"
+        onclick="selectAnswer(1, '🤫 Something We Shouldn’t Discuss! 😂', this)">
 
-        <button class="answer" onclick="selectAnswer(5, 'You 😋', this)">
-            You 😋
-        </button>
+        🤫 Something We Shouldn’t Discuss! 😂
 
-        <button class="answer" onclick="selectAnswer(5, 'Me 😎', this)">
-            Me 😎
-        </button>
+    </button>
 
-        <button class="answer" onclick="selectAnswer(5, 'Equal sharing 🤝', this)">
-            Equal sharing 🤝
-        </button>
+    <button
+        class="next"
+        onclick="nextPage(2)">
 
-        <button class="next" onclick="nextPage(6)">
-            Next ➡️
-        </button>
-    </div>
+        Next ➡️
+
+    </button>
+
+</div>
 
 
-    <!-- PAGE 7 -->
-    <div id="page7" class="hidden">
-        <h1>Question 6 🤣</h1>
+<!-- ========================= -->
+<!-- QUESTION 2 -->
+<!-- ========================= -->
 
-        <h2>Who talks more during the ride?</h2>
+<div id="page3" class="hidden">
 
-        <button class="answer" onclick="selectAnswer(6, 'You 😂', this)">
-            You 😂
-        </button>
+    <h1>Question 2 🍛</h1>
 
-        <button class="answer" onclick="selectAnswer(6, 'Me 😎', this)">
-            Me 😎
-        </button>
+    <h2>
+        After today's ride, who will share the curry?
+    </h2>
 
-        <button class="answer" onclick="selectAnswer(6, 'Both of us 🤣', this)">
-            Both of us 🤣
-        </button>
+    <button
+        class="answer"
+        onclick="selectAnswer(2, 'You 😎', this)">
 
-        <button class="next" onclick="nextPage(7)">
-            Next ➡️
-        </button>
-    </div>
+        You 😎
+
+    </button>
+
+    <button
+        class="answer"
+        onclick="selectAnswer(2, 'Me 😇', this)">
+
+        Me 😇
+
+    </button>
+
+    <button
+        class="answer"
+        onclick="selectAnswer(2, 'No sharing! 😂', this)">
+
+        No sharing! 😂
+
+    </button>
+
+    <button
+        class="next"
+        onclick="nextPage(3)">
+
+        Next ➡️
+
+    </button>
+
+</div>
 
 
-    <!-- PAGE 8 -->
-    <div id="page8" class="hidden">
-        <h1>Final Question 🚲</h1>
+<!-- ========================= -->
+<!-- QUESTION 3 -->
+<!-- ========================= -->
 
-        <h2>Are we doing the ride today?</h2>
+<div id="page4" class="hidden">
 
-        <button class="answer" onclick="selectAnswer(7, 'YES 🚲🔥', this)">
-            YES 🚲🔥
-        </button>
+    <h1>Question 3 ☕</h1>
 
-        <button class="answer" onclick="selectAnswer(7, 'Definitely ☕', this)">
-            Definitely ☕
-        </button>
+    <h2>
+        Who will suggest tea first?
+    </h2>
 
-        <button class="answer" onclick="selectAnswer(7, 'Let’s go! 😎', this)">
-            Let’s go! 😎
-        </button>
+    <button
+        class="answer"
+        onclick="selectAnswer(3, 'You ☕', this)">
 
-        <button class="next" onclick="showResults()">
-            See Results 🎉
-        </button>
-    </div>
+        You ☕
+
+    </button>
+
+    <button
+        class="answer"
+        onclick="selectAnswer(3, 'Me ☕', this)">
+
+        Me ☕
+
+    </button>
+
+    <button
+        class="answer"
+        onclick="selectAnswer(3, 'Both at the same time 😂', this)">
+
+        Both at the same time 😂
+
+    </button>
+
+    <button
+        class="next"
+        onclick="nextPage(4)">
+
+        Next ➡️
+
+    </button>
+
+</div>
 
 
-    <!-- RESULTS -->
-    <div id="results" class="hidden">
+<!-- ========================= -->
+<!-- QUESTION 4 -->
+<!-- ========================= -->
 
-        <h1>🎉 Your Official Results 🎉</h1>
+<div id="page5" class="hidden">
 
-        <p>After carefully analyzing your answers...</p>
+    <h1>Question 4 😂</h1>
 
-        <div class="stats">
+    <h2>
+        Who will complain about being tired first?
+    </h2>
 
-            <div class="stat">
-                🚲 Cycling Energy — 87%
-                <div class="bar">
-                    <div class="fill" style="width:87%"></div>
+    <button
+        class="answer"
+        onclick="selectAnswer(4, 'You 😂', this)">
+
+        You 😂
+
+    </button>
+
+    <button
+        class="answer"
+        onclick="selectAnswer(4, 'Me 😭', this)">
+
+        Me 😭
+
+    </button>
+
+    <button
+        class="answer"
+        onclick="selectAnswer(4, 'Neither 😎', this)">
+
+        Neither 😎
+
+    </button>
+
+    <button
+        class="next"
+        onclick="nextPage(5)">
+
+        Next ➡️
+
+    </button>
+
+</div>
+
+
+<!-- ========================= -->
+<!-- QUESTION 5 -->
+<!-- ========================= -->
+
+<div id="page6" class="hidden">
+
+    <h1>Question 5 🍟</h1>
+
+    <h2>
+        Who gets the bigger share of the snacks?
+    </h2>
+
+    <button
+        class="answer"
+        onclick="selectAnswer(5, 'You 😋', this)">
+
+        You 😋
+
+    </button>
+
+    <button
+        class="answer"
+        onclick="selectAnswer(5, 'Me 😎', this)">
+
+        Me 😎
+
+    </button>
+
+    <button
+        class="answer"
+        onclick="selectAnswer(5, 'Equal sharing 🤝', this)">
+
+        Equal sharing 🤝
+
+    </button>
+
+    <button
+        class="next"
+        onclick="nextPage(6)">
+
+        Next ➡️
+
+    </button>
+
+</div>
+
+
+<!-- ========================= -->
+<!-- QUESTION 6 -->
+<!-- ========================= -->
+
+<div id="page7" class="hidden">
+
+    <h1>Question 6 🤣</h1>
+
+    <h2>
+        Who talks more during the ride?
+    </h2>
+
+    <button
+        class="answer"
+        onclick="selectAnswer(6, 'You 😂', this)">
+
+        You 😂
+
+    </button>
+
+    <button
+        class="answer"
+        onclick="selectAnswer(6, 'Me 😎', this)">
+
+        Me 😎
+
+    </button>
+
+    <button
+        class="answer"
+        onclick="selectAnswer(6, 'Both of us 🤣', this)">
+
+        Both of us 🤣
+
+    </button>
+
+    <button
+        class="next"
+        onclick="nextPage(7)">
+
+        Next ➡️
+
+    </button>
+
+</div>
+
+
+<!-- ========================= -->
+<!-- QUESTION 7 -->
+<!-- ========================= -->
+
+<div id="page8" class="hidden">
+
+    <h1>Final Question 🚲</h1>
+
+    <h2>
+        Are we doing the ride today?
+    </h2>
+
+    <button
+        class="answer"
+        onclick="selectAnswer(7, 'YES 🚲🔥', this)">
+
+        YES 🚲🔥
+
+    </button>
+
+    <button
+        class="answer"
+        onclick="selectAnswer(7, 'Definitely ☕', this)">
+
+        Definitely ☕
+
+    </button>
+
+    <button
+        class="answer"
+        onclick="selectAnswer(7, 'Let’s go! 😎', this)">
+
+        Let’s go! 😎
+
+    </button>
+
+    <button
+        class="next"
+        onclick="showResults()">
+
+        See Results 🎉
+
+    </button>
+
+</div>
+
+
+<!-- ========================= -->
+<!-- RESULTS -->
+<!-- ========================= -->
+
+<div id="results" class="hidden">
+
+    <h1>
+        🎉 Your Official Results 🎉
+    </h1>
+
+    <p>
+        After carefully analyzing your answers...
+    </p>
+
+
+    <div class="stats">
+
+        <div class="stat">
+
+            🚲 Cycling Energy — 87%
+
+            <div class="bar">
+
+                <div
+                    class="fill"
+                    style="width:87%">
                 </div>
-            </div>
 
-            <div class="stat">
-                ☕ Tea Requirement — 96%
-                <div class="bar">
-                    <div class="fill" style="width:96%"></div>
-                </div>
-            </div>
-
-            <div class="stat">
-                😂 Random Discussion Level — 99%
-                <div class="bar">
-                    <div class="fill" style="width:99%"></div>
-                </div>
-            </div>
-
-            <div class="stat">
-                🍛 Curry Sharing Probability — 74%
-                <div class="bar">
-                    <div class="fill" style="width:74%"></div>
-                </div>
             </div>
 
         </div>
 
-        <div class="certificate">
 
-            <h2>🏆 OFFICIAL CYCLE RIDE PARTNER 🏆</h2>
+        <div class="stat">
 
-            <p>🚲 Cycling — APPROVED</p>
-            <p>☕ Tea Drinking — APPROVED</p>
-            <p>🍛 Curry Sharing — UNDER INVESTIGATION</p>
-            <p>😂 Random Discussions — EXPERT LEVEL</p>
-            <p>🤝 Friendship — 100%</p>
+            ☕ Tea Requirement — 96%
 
-            <h3>Certificate Status:</h3>
+            <div class="bar">
 
-            <p><strong>PERMANENTLY VALID* 😎</strong></p>
+                <div
+                    class="fill"
+                    style="width:96%">
+                </div>
 
-            <p class="small">
-                *Subject to availability of bicycles, tea and snacks.
-            </p>
+            </div>
 
         </div>
 
-        <br>
 
-        <button class="whatsapp" onclick="sendWhatsApp()">
-            📱 Send Results on WhatsApp
-        </button>
+        <div class="stat">
 
-        <button class="restart" onclick="restartQuiz()">
-            🔄 Restart Quiz
-        </button>
+            😂 Random Discussion Level — 99%
+
+            <div class="bar">
+
+                <div
+                    class="fill"
+                    style="width:99%">
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            🍛 Curry Sharing Probability — 74%
+
+            <div class="bar">
+
+                <div
+                    class="fill"
+                    style="width:74%">
+                </div>
+
+            </div>
+
+        </div>
 
     </div>
+
+
+    <!-- CERTIFICATE -->
+
+    <div class="certificate">
+
+        <h2>
+            🏆 OFFICIAL CYCLE RIDE PARTNER 🏆
+        </h2>
+
+        <p>
+            🚲 Cycling — APPROVED
+        </p>
+
+        <p>
+            ☕ Tea Drinking — APPROVED
+        </p>
+
+        <p>
+            🍛 Curry Sharing — UNDER INVESTIGATION
+        </p>
+
+        <p>
+            😂 Random Discussions — EXPERT LEVEL
+        </p>
+
+        <p>
+            🤝 Friendship — 100%
+        </p>
+
+        <h3>
+            Certificate Status:
+        </h3>
+
+        <p>
+            <strong>
+                PERMANENTLY VALID* 😎
+            </strong>
+        </p>
+
+        <p class="small">
+            *Subject to availability of bicycles, tea and snacks.
+        </p>
+
+    </div>
+
+
+    <br>
+
+
+    <button
+        class="whatsapp"
+        onclick="sendWhatsApp()">
+
+        📱 Send Results on WhatsApp
+
+    </button>
+
+
+    <button
+        class="restart"
+        onclick="restartQuiz()">
+
+        🔄 Restart Quiz
+
+    </button>
+
+</div>
 
 </div>
 
 
 <script>
 
+/* ================================= */
+/* ANSWERS */
+/* ================================= */
+
 let answers = {};
 
+
+/* ================================= */
+/* FIRST PAGE */
+/* ================================= */
+
 function answerQ1(answer) {
+
     answers[0] = answer;
 
-    document.getElementById("page1").classList.add("hidden");
-    document.getElementById("page2").classList.remove("hidden");
+    document
+        .getElementById("page1")
+        .classList
+        .add("hidden");
+
+    document
+        .getElementById("page2")
+        .classList
+        .remove("hidden");
 }
 
+
+/* ================================= */
+/* MOVING NO BUTTON */
+/* ================================= */
 
 function moveNoButton() {
 
-    const button = document.getElementById("noButton");
+    const button =
+        document.getElementById("noButton");
 
-    const maxX = window.innerWidth - button.offsetWidth - 30;
-    const maxY = window.innerHeight - button.offsetHeight - 30;
+    const maxX =
+        window.innerWidth -
+        button.offsetWidth -
+        30;
 
-    const x = Math.random() * maxX;
-    const y = Math.random() * maxY;
+    const maxY =
+        window.innerHeight -
+        button.offsetHeight -
+        30;
+
+    const x =
+        Math.random() * maxX;
+
+    const y =
+        Math.random() * maxY;
 
     button.style.position = "fixed";
-    button.style.left = x + "px";
-    button.style.top = y + "px";
+
+    button.style.left =
+        x + "px";
+
+    button.style.top =
+        y + "px";
 }
 
+
+/* ================================= */
+/* SELECT ANSWER */
+/* ================================= */
 
 function selectAnswer(question, answer, button) {
 
     answers[question] = answer;
 
-    const buttons = button.parentElement.querySelectorAll(".answer");
+    const buttons =
+        button.parentElement
+        .querySelectorAll(".answer");
 
-    buttons.forEach(btn => {
+    buttons.forEach(function(btn) {
+
         btn.classList.remove("selected");
+
     });
 
     button.classList.add("selected");
 }
 
 
+/* ================================= */
+/* NEXT PAGE */
+/* ================================= */
+
 function nextPage(currentPage) {
 
-    if (!answers[currentPage]) {
+    /*
+       Page 2 = Question 1
+       Page 3 = Question 2
+       Page 4 = Question 3
+       Page 5 = Question 4
+       Page 6 = Question 5
+       Page 7 = Question 6
+    */
 
-        alert("Please choose an answer first 😄");
+    const questionNumber =
+        currentPage - 1;
+
+
+    if (!answers[questionNumber]) {
+
+        alert(
+            "Please choose an answer first 😄"
+        );
 
         return;
     }
 
-    document.getElementById("page" + currentPage).classList.add("hidden");
 
-    document.getElementById("page" + (currentPage + 1)).classList.remove("hidden");
+    document
+        .getElementById(
+            "page" + currentPage
+        )
+        .classList
+        .add("hidden");
+
+
+    document
+        .getElementById(
+            "page" + (currentPage + 1)
+        )
+        .classList
+        .remove("hidden");
 }
 
+
+/* ================================= */
+/* RESULTS */
+/* ================================= */
 
 function showResults() {
 
     if (!answers[7]) {
 
-        alert("Please choose an answer first 😄");
+        alert(
+            "Please choose an answer first 😄"
+        );
 
         return;
     }
 
-    document.getElementById("page8").classList.add("hidden");
 
-    document.getElementById("results").classList.remove("hidden");
+    document
+        .getElementById("page8")
+        .classList
+        .add("hidden");
+
+
+    document
+        .getElementById("results")
+        .classList
+        .remove("hidden");
 }
 
 
+/* ================================= */
+/* WHATSAPP */
+/* ================================= */
+
 function sendWhatsApp() {
 
-    const phoneNumber = "97471461286";
+    /*
+       YOUR WHATSAPP NUMBER
+    */
+
+    const phoneNumber =
+        "97471461286";
+
 
     let message =
-        "🚲😂 CYCLE RIDE QUIZ RESULTS 😂🚲%0A%0A" +
+
+        "🚲😂 CYCLE RIDE QUIZ RESULTS 😂🚲\n\n" +
 
         "Ready for another legendary cycle ride? " +
-        answers[0] + "%0A%0A" +
+        answers[0] +
+        "\n\n" +
 
         "😂 Today's topic: " +
-        answers[1] + "%0A%0A" +
+        answers[1] +
+        "\n\n" +
 
         "🍛 Curry sharing: " +
-        answers[2] + "%0A%0A" +
+        answers[2] +
+        "\n\n" +
 
         "☕ Who suggests tea first: " +
-        answers[3] + "%0A%0A" +
+        answers[3] +
+        "\n\n" +
 
         "😴 Who gets tired first: " +
-        answers[4] + "%0A%0A" +
+        answers[4] +
+        "\n\n" +
 
         "🍟 Bigger snack share: " +
-        answers[5] + "%0A%0A" +
+        answers[5] +
+        "\n\n" +
 
         "🤣 Who talks more: " +
-        answers[6] + "%0A%0A" +
+        answers[6] +
+        "\n\n" +
 
         "🚲 Today's ride decision: " +
-        answers[7] + "%0A%0A" +
+        answers[7] +
+        "\n\n" +
 
-        "📊 OFFICIAL STATS%0A" +
-        "🚲 Cycling Energy: 87%%0A" +
-        "☕ Tea Requirement: 96%%0A" +
-        "😂 Random Discussion: 99%%0A" +
-        "🍛 Curry Sharing Probability: 74%%0A%0A" +
+        "📊 OFFICIAL STATS\n" +
 
-        "🏆 OFFICIAL CYCLE RIDE PARTNER%0A" +
-        "Cycling: APPROVED 🚲%0A" +
-        "Tea: APPROVED ☕%0A" +
-        "Curry Sharing: UNDER INVESTIGATION 🍛%0A" +
+        "🚲 Cycling Energy: 87%\n" +
+
+        "☕ Tea Requirement: 96%\n" +
+
+        "😂 Random Discussion: 99%\n" +
+
+        "🍛 Curry Sharing Probability: 74%\n\n" +
+
+        "🏆 OFFICIAL CYCLE RIDE PARTNER\n" +
+
+        "Cycling: APPROVED 🚲\n" +
+
+        "Tea: APPROVED ☕\n" +
+
+        "Curry Sharing: UNDER INVESTIGATION 🍛\n" +
+
         "Friendship: 100% 🤝";
 
+
+    const whatsappURL =
+
+        "https://wa.me/" +
+        phoneNumber +
+        "?text=" +
+        encodeURIComponent(message);
+
+
     window.open(
-        "https://wa.me/" + phoneNumber + "?text=" + message,
+        whatsappURL,
         "_blank"
     );
 }
 
 
+/* ================================= */
+/* RESTART */
+/* ================================= */
+
 function restartQuiz() {
 
     answers = {};
 
-    document.querySelectorAll(".hidden").forEach(el => {
-        el.classList.add("hidden");
-    });
 
-    document.getElementById("page1").classList.remove("hidden");
+    document
+        .querySelectorAll(".hidden")
+        .forEach(function(el) {
 
-    document.querySelectorAll(".answer").forEach(btn => {
-        btn.classList.remove("selected");
-    });
+            el.classList.add("hidden");
+
+        });
+
+
+    document
+        .getElementById("page1")
+        .classList
+        .remove("hidden");
+
+
+    document
+        .querySelectorAll(".answer")
+        .forEach(function(btn) {
+
+            btn.classList.remove("selected");
+
+        });
 }
 
 </script>
